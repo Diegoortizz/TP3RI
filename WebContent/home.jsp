@@ -1,5 +1,8 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +30,11 @@ html{
 textarea{
       background: Gainsboro;
 }
+
+h3{
+
+	text-align:left;
+}
     
 </style>
 <meta charset="ISO-8859-1">
@@ -35,12 +43,24 @@ textarea{
 <body>
 <form>
 <div class="content">
-<label for="ta">Chercher:</label>
-<textarea name="textareadata" id="ta" rows="5" style="margin: 0px; width: 494px; height: 363px;">${text}</textarea>
+<label for="ta"><h2>Chercher:</h2></label>
+<textarea name="textareadata" id="ta" rows="5" style="margin: 0px; width: 494px; height: 363px;">${text} </textarea>
 <input type="submit" name="submit" value="Envoyer!" />
+
+<h3>RESULTATS : </h3>
+ <ol>
+	<c:forEach var="columnHeader" items="${columnHeaders}">	
+       <li> <c:url value="${columnHeader}" /></li>
+	</c:forEach>
+</ol>
+
+
 </div>
-
-
 </form>	
+
+
+
+
+
 </body>
 </html>
