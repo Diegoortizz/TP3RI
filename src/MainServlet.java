@@ -37,7 +37,20 @@ public class MainServlet extends HttpServlet {
         	request.getRequestDispatcher("/home.jsp").forward(request, response);
         } else {
         	System.out.println(comment);
-        	request.setAttribute("text", comment);
+        	
+        	/* travail TP RI qui doit retourner les titres les plus probables d'être liés au paragraphe donné en entrée */
+            
+        	String[] columnHeaders = {"<a href=\"http://fr.wikibooks.org\">Lien vers Wikilivres</a>", " <a href=\"https://www.w3schools.com/html/\">Visit our HTML tutorial</a> "};
+            request.setAttribute("columnHeaders", columnHeaders);
+        	
+            request.setAttribute("text", comment); // on doit remplacer le comment par une liste de href par exemple
+        	
+        	
+        	
+        	
+        	
+        	
+        	
         	request.getRequestDispatcher("/home.jsp").forward(request, response);
         }
         
