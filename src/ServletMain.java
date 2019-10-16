@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.lucene.*;
@@ -44,20 +46,22 @@ public class ServletMain extends HttpServlet {
 			 * paragraphe donné en entrée
 			 */
 
+			ParagraphToKeyword ptk = new ParagraphToKeyword(comment);
+			ArrayList<ArrayList<String>> z = ptk.computeKeywords();
+			System.out.println("here" + " " + z);
 			TPRI3 ri = new TPRI3();
 			String[] result;
-			result = ri.query("title:Billy", "text:Rose", "text:Israel");
-//        	
+			result = ri.query2(z.get(0), z.get(1));
+
 			for (int i = 0; i < result.length; i++) {
-				System.out.println(result[i]);
+				System.out.println("résultats : " + result[i]);
 			}
 
 			request.setAttribute("columnHeaders", result);
-			request.setAttribute("text", comment); // on doit remplacer le comment par une liste de href par exemple
-
+			request.setAttribute("text", comment);
 			request.getRequestDispatcher("/home.jsp").forward(request, response);
-		}
 
+		}
 	}
 
 	/**

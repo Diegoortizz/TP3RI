@@ -1,4 +1,3 @@
-package tp3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -101,7 +100,7 @@ public class ParagraphToKeyword {
 
 	}
 
-	public Map<String, Integer> computeKeywords() {
+	public ArrayList<ArrayList<String>> computeKeywords() {
 
 		for (int i = 0; i < S.length; i++) {
 			if (S[i].matches(pattern)) {
@@ -127,6 +126,21 @@ public class ParagraphToKeyword {
 			}
 		}
 
+		System.out.println(results);
+
+		ArrayList<ArrayList<String>> titles_and_texts = new ArrayList<ArrayList<String>>();
+
+		ArrayList<String> titles = new ArrayList<String>();
+		ArrayList<String> texts = new ArrayList<String>();
+
+		for (String key : results.keySet()) {
+			if (results.get(key) > 1) {
+				titles.add(key);
+			} else {
+				texts.add(key);
+			}
+		}
+
 		final Map<String, Integer> sorted = results.entrySet()
 
 				.stream()
@@ -135,9 +149,10 @@ public class ParagraphToKeyword {
 
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
-		// on tri cette map en fonction des valeurs
-
-		return sorted;
+		titles_and_texts.add(titles);
+		titles_and_texts.add(texts);
+		
+		return titles_and_texts;
 
 	}
 
@@ -145,11 +160,13 @@ public class ParagraphToKeyword {
 
 //		String p = "The Star is a movie from 1952. It was directed by Stuart Heisler. It stars Bette Davis, Sterling Hayden and Natalie Wood. Davis got a nomination for the Academy Award for Best Actress for this movie.";
 //		String p = "Claracq, is a commune of the Pyrénées-Atlantiques département in the southwestern part of France.";
-		String p = "The Billy Rose Art Garden Is the sculpture park designed by the Japanese-American sculptor Isamu Noguchi on the western slope of the Israel Museum in Jerusalem, Israel. The art garden is named after the impresario and lyricist Billy Rose (1899-1966). Isamu Noguchi started to plan the sculpture park from the 1960s on the slopes of the museum grounds and divided the terrain into different sections through walls made of rough unworked field stones. The artificial garden was completed in 1965.";
+//		String p = "The Billy Rose Art Garden Is the sculpture park designed by the Japanese-American sculptor Isamu Noguchi on the western slope of the Israel Museum in Jerusalem, Israel. The art garden is named after the impresario and lyricist Billy Rose (1899-1966). Isamu Noguchi started to plan the sculpture park from the 1960s on the slopes of the museum grounds and divided the terrain into different sections through walls made of rough unworked field stones. The artificial garden was completed in 1965.";
+		String p = "The Fifer or Young Flautist (1866) is an oil painting by French painter Édouard Manet. It hangs in the Musée d'Orsay, Paris, France.";
 		ParagraphToKeyword ptkw = new ParagraphToKeyword(p);
-		System.out.println("output" + " " + ptkw.computeKeywords()); // il faut maintenant implémenter des techniques de recherche côté serveur, 
-		// par exemple : on chosit les n mots avec la k plus grande fréquence; On fait une n recherche avec n[i] en titre et le reste en texte 
-
+		System.out.println("output" + " " + ptkw.computeKeywords()); // il faut maintenant implémenter des techniques de
+																		// recherche côté serveur,
+		// par exemple : on chosit les n mots avec la k plus grande fréquence; On fait
+		// une n recherche avec n[i] en titre et le reste en texte
 
 	}
 
