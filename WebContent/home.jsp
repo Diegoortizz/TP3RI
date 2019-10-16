@@ -43,8 +43,9 @@ h3 {
 		<div class="content">
 			<label for="ta"></label>
 			<h2>Chercher:</h2>			
-			<textarea name="textareadata" id="ta" rows="5"
-				style="margin: 0px; width: 494px; height: 363px;">${text} </textarea>
+<!-- 			<textarea name="textareadata" id="ta" rows="5" -->
+<%-- 				style="margin: 0px; width: 494px; height: 363px;">${text} </textarea> --%>
+			<input type="text" name="textareadata" placeholder="type first name" value="${text}" />
 			<input type="submit" name="submit" value="Envoyer!" />
 
 			<h3>RESULTATS :</h3>

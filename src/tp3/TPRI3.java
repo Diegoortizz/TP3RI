@@ -29,22 +29,22 @@ public class TPRI3 {
 		nameFolderIndex = "C:\\Users\\Diego\\git\\TP3RI\\indexRI\\";
 	}
 
-//	public static void main(String[] args) {
-//		TPRI3 wfr = new TPRI3();
-////        wfr.index();  // pas besoin de recréer l'index si on n'a pas modifié l'algo de recherche
-//
+	public static void main(String[] args) {
+		TPRI3 wfr = new TPRI3();
+        wfr.index();  // pas besoin de recréer l'index si on n'a pas modifié l'algo de recherche
+        System.out.println("index done");
 //		ArrayList<String> titles = new ArrayList<String>();
-//		titles.add("Billy");
-//		titles.add("Rose");
+//		titles.add("Paris");
+////		titles.add("Rose");
 //
 //		ArrayList<String> texts = new ArrayList<String>();
-//		texts.add("Rose");
+//		texts.add("Paris");
 //
 //		String[] a = wfr.query2(titles, texts); // recherche full titles
 //		for (int i = 0; i < a.length; i++) {
 //			System.out.println("here" + a[i]);
 //		}
-//	}
+	}
 
 	public void index() {
 		IndexCollection mywikipedia = new IndexCollection(nameFileXML, nameFolderIndex);

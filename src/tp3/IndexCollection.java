@@ -82,9 +82,9 @@ public class IndexCollection {
         //iwc.setSimilarity(new TF_IDF(new TF_Total(), new IDF_BIR_Smooth())); //Avec TFtotal, IDFbir, smooth
         //iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Total())); //Avec TFlog, IDFtotal
         //iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum())); //Avec TFlog, IDFsum
-        iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum_Smooth())); //Avec TFlog, IDFsum,smooth
+//        iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum_Smooth())); //Avec TFlog, IDFsum,smooth
         //iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR())); //Avec TFlog, IDFbir
-        //iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR_Smooth())); //Avec TFlog, IDFbir,smooth
+        iwc.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR_Smooth())); //Avec TFlog, IDFbir,smooth
         
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         boolean create = true;

@@ -11,6 +11,7 @@ package tp3;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -83,11 +84,10 @@ public class QuerySimple {
 		// TFlog, IDFtotal
 		// searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum())); //Avec
 		// TFlog, IDFsum
-		searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum_Smooth())); // Avec TFlog, IDFsum,smooth
+//		searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_Sum_Smooth())); // Avec TFlog, IDFsum,smooth
 		// searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR())); //Avec
 		// TFlog, IDFbir
-		// searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR_Smooth()));
-		// //Avec TFlog, IDFbir,smooth
+		searcher.setSimilarity(new TF_IDF(new TF_Log(), new IDF_BIR_Smooth())); //	 Avec TFlog, IDFbir,smooth
 
 		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, hitsPerPage + 20);
 		searcher.search(booleanQuery, collector);
@@ -161,9 +161,15 @@ public class QuerySimple {
 		for (int i = 0; i < hits.length; ++i) {
 			int docId = hits[i].doc;
 			Document d = searcher.doc(docId);
+			String title = searcher.doc(docId).get("title");
+
+			final Charset fromCharset = Charset.forName("windows-1252");
+			final Charset toCharset = Charset.forName("UTF-8");
+			String titleok = new String(title.getBytes(fromCharset), toCharset);
+
+//			System.out.println(title + " / " + titleok);
 //			System.out.println((i + 1) + ". " + d.get("title"));
-			result[i] = "<a href=\"http://simple.wikipedia.org/wiki/" + searcher.doc(docId).get("title") + "\"> "
-					+ searcher.doc(docId).get("title") + "</a>";
+			result[i] = "<a href=\"http://simple.wikipedia.org/wiki/" + titleok + "\"> " + titleok + "</a>";
 //			System.out.println(result[i]);
 		}
 

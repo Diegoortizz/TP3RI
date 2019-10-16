@@ -37,9 +37,10 @@ public class ServletMain extends HttpServlet {
 
 		System.out.println(action);
 		if (action == null) {
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			request.getRequestDispatcher("/test.jsp").forward(request, response);
 		} else {
-			System.out.println(comment);
+			comment = request.getParameter("textareadata");
+			System.out.println("comment : " + comment);
 
 			/*
 			 * travail TP RI qui doit retourner les titres les plus probables d'être liés au
@@ -48,7 +49,7 @@ public class ServletMain extends HttpServlet {
 
 			ParagraphToKeyword ptk = new ParagraphToKeyword(comment);
 			ArrayList<ArrayList<String>> z = ptk.computeKeywords();
-			System.out.println("here" + " " + z);
+//			System.out.println("here" + " " + z);
 			TPRI3 ri = new TPRI3();
 			String[] result;
 			result = ri.query2(z.get(0), z.get(1));
@@ -59,7 +60,7 @@ public class ServletMain extends HttpServlet {
 
 			request.setAttribute("columnHeaders", result);
 			request.setAttribute("text", comment);
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			request.getRequestDispatcher("/test.jsp").forward(request, response);
 
 		}
 	}
